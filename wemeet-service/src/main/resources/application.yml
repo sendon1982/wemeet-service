@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: wemeet-service
+
+  
+
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/master.xml
