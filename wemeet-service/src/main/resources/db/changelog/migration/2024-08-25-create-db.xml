@@ -5,12 +5,24 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
     <changeSet id="2024-08-25-001" author="sendon1982">
-        <createTable tableName="test_table">
-            <column name="test_id" type="int">
-                <constraints primaryKey="true"/>
+
+        <createTable tableName="supplier_info">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" />
             </column>
-            <column name="test_column" type="INT"/>
+
+            <column name="wechat_id" type="varchar(100)"/>
+            <column name="wechat_name" type="varchar(100)"/>
+            <column name="wechat_profile_image_url" type="varchar(500)"/>
+
+            <column name="email" type="varchar(100)"/>
+            <column name="mobile" type="varchar(100)"/>
+
+            <column name="createdAt" type="datetime" />
+            <column name="createdBy" type="varchar(100)" />
+
         </createTable>
+
     </changeSet>
 
 </databaseChangeLog>

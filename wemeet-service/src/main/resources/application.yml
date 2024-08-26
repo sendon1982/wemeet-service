@@ -2,8 +2,16 @@ spring:
   application:
     name: wemeet-service
 
-  
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/wemeetdb?createDatabaseIfNotExist=true
+    username: root
+    password: password
 
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/master.xml
+
+logging:
+  level:
+    root: info
