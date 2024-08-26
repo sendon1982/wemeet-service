@@ -115,6 +115,7 @@
                         </database>
                         <target>
                             <packageName>org.wemeet.service.gen.jooq</packageName>
+                            <!-- TODO: maybe change to src folder to be part of source code -->
                             <directory>target/generated-sources/jooq</directory>
                         </target>
                     </generator>
