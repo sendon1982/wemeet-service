@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering SYSTEM "http://hibernate.org/dtd/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+
+    <!-- Select specific schema and catalog -->
+    <schema-selection match-catalog="wemeetdb" match-schema="wemeetdb" />
+
+    <table-filter match-name="DATABASECHANGELOG" exclude="true"/>
+    <table-filter match-name="DATABASECHANGELOGLOCK" exclude="true"/>
+
+    <type-mapping>
+        <sql-type jdbc-type="DATE" hibernate-type="java.time.LocalDate"/>
+        <sql-type jdbc-type="TIMESTAMP" hibernate-type="java.time.LocalDateTime"/>
+    </type-mapping>
+
+</hibernate-reverse-engineering>
