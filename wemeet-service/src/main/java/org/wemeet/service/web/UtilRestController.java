@@ -11,18 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/test")
 public class UtilRestController {
 
-    @GetMapping("/1")
-    public ResponseEntity<TestInfo> test2332() {
-        System.out.println("getting request 1");
-        TestInfo testInfo = new TestInfo();
-        testInfo.setId(1);
-        testInfo.setName("test2332");
-        return new ResponseEntity<>(testInfo, HttpStatus.ACCEPTED);
-    }
+    private final
 
-    @Data
-    class TestInfo {
-        private int id;
-        private String name;
+    @GetMapping("/1")
+    void test2332() {
+        System.out.println("getting request 1");
     }
 }

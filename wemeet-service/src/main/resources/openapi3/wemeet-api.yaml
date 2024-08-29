@@ -1,0 +1,597 @@
+openapi: 3.0.0
+info:
+  version: v1
+  title: Wemeet rest api spec
+  description: Wemeet rest api for activity planning and participation
+security:
+  - ApiKey: []
+tags:
+  - name: Space Supplier
+  - name: Activity Organizer
+  - name: Participator
+servers:
+  - url: http://localhost:8080/api/{version}
+    description: Local
+    variables:
+      version:
+        default: v1
+        description: API Version
+  - url: https://dev.wemmeet.com/api/{version}
+    description: DEV
+    variables:
+      version:
+        default: v1
+        description: API Version
+  - url: https://prod.wemmeet.com/api/{version}
+    description: Production
+    variables:
+      version:
+        default: v1
+        description: API Version
+paths:
+  '/suppliers':
+    post:
+      tags:
+        - Space Supplier
+      operationId: registerNewSupplier
+      summary: Register as a new supplier who can provide space and facilities
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSupplierRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupplierResponse'
+        '403':
+          description: API key is missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error, try request again.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      tags:
+        - Space Supplier
+      operationId: getSuppliersByQuery
+      summary: Query suppliers by search conditions
+      parameters:
+        - name: query
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+            example: rank:desc,price:asc
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 20
+        - name: pageNo
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SupplierResponse'
+        '403':
+          description: API key is missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error, try request again.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  '/suppliers/{supplierId}/playSpaces':
+    post:
+      tags:
+        - Space Supplier
+      operationId: createNewPlaySpace
+      summary: Create a new play space to orgnizers to schedule and plan activities
+      parameters:
+        - in: path
+          name: supplierId
+          schema:
+            type: string
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePlaySpaceRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreatePlaySpaceResponse'
+        '403':
+          description: API key is missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error, try request again.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    get:
+      tags:
+        - Space Supplier
+      operationId: getPlaySpaceListBySupplierId
+      summary: List all the play space for a supplier where activity organizer can create event
+      parameters:
+        - in: path
+          name: supplierId
+          schema:
+            type: string
+          required: true
+
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreatePlaySpaceResponse'
+        '403':
+          description: API key is missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error, try request again.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  '/suppliers/playSpaces':
+    get:
+      tags:
+        - Space Supplier
+      operationId: getAllPlaySpaceList
+      summary: List all the play space where activity organizer can create event
+
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreatePlaySpaceResponse'
+        '403':
+          description: API key is missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error, try request again.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  '/organizers/events':
+    post:
+      tags:
+        - Activity Organizer
+      operationId: createNewEvent
+      summary: Create a new event for players to enroll
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatEventRequest'
+        required: true
+
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventResponse'
+        '403':
+          description: API key is missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error, try request again.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    get:
+      tags:
+        - Activity Organizer
+      operationId: getAllEvents
+      summary: List all the events players can sign up to play
+
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventResponse'
+        '403':
+          description: API key is missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error, try request again.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+
+  '/events/{eventId}/enroll':
+    post:
+      tags:
+        - Participator
+      operationId: enrollEvent
+      summary: Enroll to an event hosted by organizer
+      parameters:
+        - in: path
+          name: eventId
+          schema:
+            type: string
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnrollRequest'
+        required: true
+
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnrollResponse'
+        '403':
+          description: API key is missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error, try request again.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  '/events/{eventId}/cancel':
+    post:
+      tags:
+        - Participator
+      operationId: cancelEnrolledEvent
+      summary: Cancel enrolled event hosted by organizer
+      parameters:
+        - in: path
+          name: eventId
+          schema:
+            type: string
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CancelEnrollRequest'
+        required: true
+
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CancelEnrollResponse'
+        '403':
+          description: API key is missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error, try request again.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    CreateSupplierRequest:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        address:
+          type: string
+
+
+    SupplierResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        address:
+          type: string
+
+    CreatePlaySpaceRequest:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        beginDateTime:
+          type: string
+          format: date-time
+          example: '2024-07-21T17:00:00Z'
+        endDateTime:
+          type: string
+          format: date-time
+          example: '2024-07-21T20:00:00Z'
+        timezone:
+          type: string
+        address:
+          type: string
+        capacity:
+          type: integer
+        note:
+          type: string
+
+    CreatePlaySpaceResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        beginDateTime:
+          type: string
+          format: date-time
+          example: '2024-07-21T17:00:00Z'
+        endDateTime:
+          type: string
+          format: date-time
+          example: '2024-07-21T20:00:00Z'
+        timezone:
+          type: string
+        address:
+          type: string
+        capacity:
+          type: integer
+        availableSpot:
+          type: integer
+          description: this can be calculated at run time
+        note:
+          type: string
+
+    CreatEventRequest:
+      type: object
+      properties:
+        id:
+          type: string
+        orgnizerId:
+          type: string
+        orgnizerIdType:
+          type: string
+          example: wechat
+        playSpaceId:
+          type: string
+        capacity:
+          type: integer
+        availableSpot:
+          type: integer
+          description: this can be calculated at run time
+        note:
+          type: string
+
+    EventResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        orgnizerId:
+          type: string
+        orgnizerIdType:
+          type: string
+          example: wechat
+        playSpaceId:
+          type: string
+        beginDateTime:
+          type: string
+          format: date-time
+          example: '2024-07-21T17:00:00Z'
+        endDateTime:
+          type: string
+          format: date-time
+          example: '2024-07-21T20:00:00Z'
+        timezone:
+          type: string
+        address:
+          type: string
+        capacity:
+          type: integer
+        availableSpot:
+          type: integer
+          description: this can be calculated at run time
+        note:
+          type: string
+
+    EnrollRequest:
+      type: object
+      properties:
+        id:
+          type: string
+        playerId:
+          type: string
+        playerIdType:
+          type: string
+          example: wechat
+        eventId:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+          example: '2024-07-21T17:00:00Z'
+        note:
+          type: string
+
+    CancelEnrollRequest:
+      type: object
+      properties:
+        id:
+          type: string
+        playerId:
+          type: string
+        playerIdType:
+          type: string
+          example: wechat
+        eventId:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+          example: '2024-07-21T17:00:00Z'
+        reason:
+          type: string
+
+    CancelEnrollResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        playerId:
+          type: string
+        playerIdType:
+          type: string
+          example: wechat
+        eventId:
+          type: string
+        eventName:
+          type: string
+        playSpaceId:
+          type: string
+        beginDateTime:
+          type: string
+          format: date-time
+          example: '2024-07-21T17:00:00Z'
+        endDateTime:
+          type: string
+          format: date-time
+          example: '2024-07-21T20:00:00Z'
+        timezone:
+          type: string
+        address:
+          type: string
+
+    EnrollResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        playerId:
+          type: string
+        playerIdType:
+          type: string
+          example: wechat
+        eventId:
+          type: string
+        eventName:
+          type: string
+        playSpaceId:
+          type: string
+        beginDateTime:
+          type: string
+          format: date-time
+          example: '2024-07-21T17:00:00Z'
+        endDateTime:
+          type: string
+          format: date-time
+          example: '2024-07-21T20:00:00Z'
+        timezone:
+          type: string
+        address:
+          type: string
+
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+
+    ErrorDetail:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+        parameter:
+          type: string
+  securitySchemes:
+    ApiKey:
+      type: apiKey
+      in: header
+      name: X-Api-Key
