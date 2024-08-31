@@ -74,6 +74,7 @@
             <column name="activity_status" type="varchar(100)"/>
 
             <column name="description" type="varchar(500)"/>
+            <column name="start_date_time" type="datetime"/>
             <column name="end_date_time" type="datetime"/>
 
             <!-- Either select from dropdown list or manually input -->
