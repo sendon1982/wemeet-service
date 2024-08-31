@@ -1,12 +1,9 @@
 package org.wemeet.service.svc;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
-import org.wemeet.service.gen.jpa.SupplierInfo;
+import org.wemeet.service.gen.jpa.SupplierEntity;
 import org.wemeet.service.gen.model.CreatePlaySpaceRequest;
 import org.wemeet.service.gen.model.CreateSupplierRequest;
 import org.wemeet.service.gen.model.SupplierResponse;
@@ -24,7 +21,7 @@ public class SupplierServiceImpl implements SupplierService {
 
         SupplierResponse supplierResponse = new SupplierResponse();
 
-        SupplierInfo supplierInfo = new SupplierInfo();
+        SupplierEntity supplierInfo = new SupplierEntity();
         supplierInfo.setEmail("sendon1982@gmail.com");
 
         supplierInfoRepository.save(supplierInfo);
