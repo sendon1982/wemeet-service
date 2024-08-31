@@ -20,7 +20,7 @@ public class ActivityServiceImpl implements ActivityService {
 
         ActivityEntity activityEntity = new ActivityEntity();
 
-//        activityEntity.setHostUserId();
+        //activityEntity.setHostUserId();
 //        activityEntity.setPostedUserId();
 //        activityEntity.setActivityName();
 //        activityEntity.setActivityStatus();
