@@ -1,5 +1,5 @@
 package org.wemeet.service.gen.jpa;
-// Generated Aug 31, 2024, 7:45:08 PM by Hibernate Tools 6.5.2.Final
+// Generated 31 Aug 2024, 9:53:40 pm by Hibernate Tools 6.5.2.Final
 
 
 import jakarta.persistence.Column;

@@ -22,7 +22,10 @@ public class SupplierServiceImpl implements SupplierService {
         SupplierResponse supplierResponse = new SupplierResponse();
 
         SupplierEntity supplierInfo = new SupplierEntity();
-        supplierInfo.setEmail("sendon1982@gmail.com");
+        supplierInfo.setEmail(request.getEmail());
+        supplierInfo.setName(request.getName());
+        supplierInfo.setAddress(request.getAddress());
+        supplierInfo.setMobile(request.getMobile());
 
         supplierInfoRepository.save(supplierInfo);
 

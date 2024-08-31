@@ -25,6 +25,7 @@ public class SupplierController implements SpaceSupplierApi {
     @Override
     public ResponseEntity<SupplierResponse> registerNewSupplier(CreateSupplierRequest request) {
         supplierService.createSupplier(request);
+        log.info("Created new supplier=====");
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

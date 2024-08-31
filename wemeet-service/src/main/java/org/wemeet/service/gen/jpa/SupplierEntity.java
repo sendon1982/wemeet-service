@@ -1,5 +1,5 @@
 package org.wemeet.service.gen.jpa;
-// Generated Aug 31, 2024, 7:45:08 PM by Hibernate Tools 6.5.2.Final
+// Generated 31 Aug 2024, 9:53:40 pm by Hibernate Tools 6.5.2.Final
 
 
 import jakarta.persistence.Column;
@@ -26,15 +26,18 @@ public class SupplierEntity  implements java.io.Serializable {
      private String mobile;
      private LocalDateTime createdAt;
      private String createdBy;
+     private String address;
+     private String name;
 
     public SupplierEntity() {
     }
 
 	
-    public SupplierEntity(long id) {
+    public SupplierEntity(long id, String name) {
         this.id = id;
+        this.name = name;
     }
-    public SupplierEntity(long id, String wechatId, String wechatName, String wechatProfileImageUrl, String email, String mobile, LocalDateTime createdAt, String createdBy) {
+    public SupplierEntity(long id, String wechatId, String wechatName, String wechatProfileImageUrl, String email, String mobile, LocalDateTime createdAt, String createdBy, String address, String name) {
        this.id = id;
        this.wechatId = wechatId;
        this.wechatName = wechatName;
@@ -43,6 +46,8 @@ public class SupplierEntity  implements java.io.Serializable {
        this.mobile = mobile;
        this.createdAt = createdAt;
        this.createdBy = createdBy;
+       this.address = address;
+       this.name = name;
     }
    
      @Id 
@@ -125,6 +130,26 @@ public class SupplierEntity  implements java.io.Serializable {
     
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
+    }
+
+    
+    @Column(name="address", length=500)
+    public String getAddress() {
+        return this.address;
+    }
+    
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    
+    @Column(name="name", nullable=false, length=100)
+    public String getName() {
+        return this.name;
+    }
+    
+    public void setName(String name) {
+        this.name = name;
     }
 
 

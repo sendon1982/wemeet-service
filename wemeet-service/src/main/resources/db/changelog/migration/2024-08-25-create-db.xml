@@ -177,4 +177,15 @@
 
     </changeSet>
 
+    <changeSet author="Siqi Yi" id="addColumn-supplier">
+        <addColumn tableName="supplier_entity">
+            <column name="address"
+                    type="varchar(500)"/>
+            <column name="name"
+                    type="varchar(100)">
+                <constraints nullable="false" />
+            </column>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>
