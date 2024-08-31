@@ -185,7 +185,7 @@
                                     <goal>hbm2java</goal>
                                 </goals>
                                 <configuration>
-                                    <outputDirectory>target/generated-sources</outputDirectory>
+                                    <outputDirectory>src/main/java</outputDirectory>
                                     <ejb3>true</ejb3>
                                 </configuration>
                             </execution>
