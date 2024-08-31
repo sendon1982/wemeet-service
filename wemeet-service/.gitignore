@@ -33,4 +33,4 @@ build/
 .vscode/
 
 ### Ignore generated src files ###
-src/main/java/org/wemeet/service/gen/
+#src/main/java/org/wemeet/service/gen/
