@@ -4,13 +4,14 @@ package org.wemeet.service.svc;
 import io.swagger.v3.oas.annotations.servers.Server;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 import org.wemeet.service.gen.jpa.ActivityEntity;
 import org.wemeet.service.gen.model.ActivityResponse;
 import org.wemeet.service.repository.jpa.ActivityRepository;
 
 import java.time.LocalDateTime;
 
-@Server
+@Service
 @Slf4j
 @RequiredArgsConstructor
 public class ActivityServiceImpl implements ActivityService {
