@@ -6,7 +6,7 @@
 
     <changeSet id="2024-08-25-001" author="sendon1982">
 
-        <createTable tableName="supplier_info">
+        <createTable tableName="supplier_entity">
             <column name="id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" />
             </column>
@@ -18,9 +18,165 @@
             <column name="email" type="varchar(100)"/>
             <column name="mobile" type="varchar(100)"/>
 
-            <column name="createdAt" type="datetime" />
-            <column name="createdBy" type="varchar(100)" />
+            <column name="created_at" type="datetime" />
+            <column name="created_by" type="varchar(100)" />
+        </createTable>
 
+        <!-- User tables -->
+        <createTable tableName="user_entity">
+            <column name="user_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" />
+            </column>
+
+            <column name="wechat_id" type="varchar(100)"/>
+            <column name="wechat_name" type="varchar(100)"/>
+            <column name="wechat_profile_image_url" type="varchar(500)"/>
+
+            <column name="created_at" type="datetime" />
+            <column name="created_by" type="varchar(100)" />
+        </createTable>
+
+        <createTable tableName="activity_history_entity">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" />
+            </column>
+
+            <column name="user_id" type="bigint"/>
+            <column name="activity_id" type="bigint"/>
+
+        </createTable>
+
+        <createTable tableName="user_experience_entity">
+            <column name="user_experience_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" />
+            </column>
+
+            <column name="user_id" type="bigint"/>
+            <column name="experience" type="varchar(100)"/>
+            <column name="level" type="varchar(100)"/>
+            <column name="years" type="int"/>
+
+            <column name="created_at" type="datetime" />
+            <column name="created_by" type="varchar(100)" />
+        </createTable>
+
+        <!-- activity tables -->
+        <createTable tableName="activity_entity">
+            <column name="activity_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" />
+            </column>
+
+            <column name="host_user_id" type="bigint"/>
+            <column name="posted_user_id" type="bigint"/>
+
+            <column name="activity_name" type="varchar(100)"/>
+            <!-- status can be ON_GOING, CLOSED ??? -->
+            <column name="activity_status" type="varchar(100)"/>
+
+            <column name="description" type="varchar(500)"/>
+            <column name="end_date_time" type="datetime"/>
+
+            <!-- Either select from dropdown list or manually input -->
+            <column name="play_space_id" type="bigint"/>
+
+            <column name="max_slot" type="int"/>
+            <column name="available_slot" type="int"/>
+
+            <column name="begin_date_time" type="datetime"/>
+            <column name="end_date_time" type="datetime"/>
+
+            <column name="created_at" type="datetime" />
+            <column name="created_by" type="varchar(100)" />
+        </createTable>
+
+        <createTable tableName="tag_entity">
+            <column name="tag_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" />
+            </column>
+
+            <column name="tag_name" type="varchar(100)"/>
+
+            <column name="created_at" type="datetime" />
+            <column name="created_by" type="varchar(100)" />
+        </createTable>
+
+        <createTable tableName="activity_tag_entity">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" />
+            </column>
+
+            <column name="activity_id" type="bigint"/>
+            <column name="tag_id" type="bigint"/>
+
+            <column name="created_at" type="datetime" />
+        </createTable>
+
+        <createTable tableName="activity_enroll_entity">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" />
+            </column>
+
+            <column name="user_id" type="bigint"/>
+            <column name="activity_id" type="bigint"/>
+
+            <column name="created_at" type="datetime" />
+        </createTable>
+
+        <!-- Game Info-->
+        <createTable tableName="game_entity">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" />
+            </column>
+
+            <column name="name" type="varchar(100)"/>
+            <column name="description" type="varchar(1000)"/>
+
+            <column name="game_profile_url" type="varchar(500)" />
+            <column name="rating" type="int" />
+            <column name="min_person" type="int" />
+            <column name="max_person" type="int" />
+
+            <column name="duration_min" type="int" />
+            <column name="difficulty" type="int" />
+
+            <column name="difficulty" type="int" />
+
+            <column name="gstone_game_url" type="varchar(500)" />
+
+            <column name="created_at" type="datetime" />
+        </createTable>
+
+        <!-- One to Many as one activity can have multiple games-->
+        <createTable tableName="activity_game_entity">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" />
+
+            </column>
+            <column name="activity_id" type="bigint"/>
+            <column name="game_id" type="bigint"/>
+
+            <column name="created_at" type="datetime" />
+        </createTable>
+
+        <!-- place space-->
+
+        <createTable tableName="play_space_entity">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" />
+            </column>
+
+            <column name="name" type="varchar(100)"/>
+            <column name="description" type="varchar(500)"/>
+            <column name="wechat_profile_image_url" type="varchar(500)"/>
+
+            <column name="address" type="varchar(500)"/>
+            <column name="capacity" type="int"/>
+
+            <column name="begin_date_time" type="datetime"/>
+            <column name="end_date_time" type="datetime"/>
+
+            <column name="created_at" type="datetime" />
+            <column name="created_by" type="varchar(100)" />
         </createTable>
 
     </changeSet>

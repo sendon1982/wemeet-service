@@ -1,4 +1,4 @@
-package org.wemeet.service.repository;
+package org.wemeet.service.repository.jooq;
 
 import org.jooq.DSLContext;
 import org.springframework.beans.factory.annotation.Autowired;

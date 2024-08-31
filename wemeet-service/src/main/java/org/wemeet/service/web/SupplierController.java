@@ -28,5 +28,9 @@ public class SupplierController implements SpaceSupplierApi {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-
+    @Override
+    public ResponseEntity<CreatePlaySpaceResponse> createNewPlaySpace(String supplierId, CreatePlaySpaceRequest request) {
+        supplierService.createNewPlaySpace(supplierId, request);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
 }

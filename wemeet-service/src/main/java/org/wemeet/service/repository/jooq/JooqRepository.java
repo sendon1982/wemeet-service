@@ -1,4 +1,4 @@
-package org.wemeet.service.repository;
+package org.wemeet.service.repository.jooq;
 
 import java.util.List;
 

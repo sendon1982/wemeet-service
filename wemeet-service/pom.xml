@@ -157,6 +157,7 @@
         </profile>
 
         <profile>
+            <!-- https://github.com/hibernate/hibernate-tools/blob/6.5.2.Final/maven/readme.txt -->
             <id>jpa</id>
             <build>
                 <plugins>
