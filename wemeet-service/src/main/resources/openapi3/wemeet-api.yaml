@@ -208,17 +208,17 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
-  '/organizers/events':
+  '/organizers/activities':
     post:
       tags:
         - Activity Organizer
-      operationId: createNewEvent
-      summary: Create a new event for players to enroll
+      operationId: createNewActivity
+      summary: Create a new activity for players to enroll
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreatEventRequest'
+              $ref: '#/components/schemas/CreatActivityRequest'
         required: true
 
       responses:
@@ -425,57 +425,89 @@ components:
         note:
           type: string
 
-    CreatEventRequest:
+    CreatActivityRequest:
       type: object
       properties:
-        id:
-          type: string
-        orgnizerId:
-          type: string
-        orgnizerIdType:
-          type: string
-          example: wechat
-        playSpaceId:
-          type: string
-        capacity:
+        activityId:
           type: integer
-        availableSpot:
+          format: int64
+        hostUserId:
           type: integer
-          description: this can be calculated at run time
-        note:
+          format: int64
+        postedUserId:
+          type: integer
+          format: int64
+        activityName:
           type: string
-
-    EventResponse:
-      type: object
-      properties:
-        id:
+        activityStatus:
           type: string
-        orgnizerId:
+          enum:
+            - PENDING
+            - ACTIVE
+            - COMPLETED
+            - CANCELLED
+        description:
           type: string
-        orgnizerIdType:
-          type: string
-          example: wechat
-        playSpaceId:
-          type: string
-        beginDateTime:
+        startDateTime:
           type: string
           format: date-time
-          example: '2024-07-21T17:00:00Z'
         endDateTime:
           type: string
           format: date-time
-          example: '2024-07-21T20:00:00Z'
-        timezone:
-          type: string
-        address:
-          type: string
-        capacity:
+        playSpaceId:
           type: integer
-        availableSpot:
+          format: int64
+        maxSlot:
           type: integer
-          description: this can be calculated at run time
-        note:
+          format: int32
+        availableSlot:
+          type: integer
+          format: int32
+      required:
+        - activity_id
+        - host_user_id
+
+    ActivityResponse:
+      type: object
+      properties:
+        activityId:
+          type: integer
+          format: int64
+        hostUserId:
+          type: integer
+          format: int64
+        postedUserId:
+          type: integer
+          format: int64
+        activityName:
           type: string
+        activityStatus:
+          type: string
+          enum:
+            - PENDING
+            - ACTIVE
+            - COMPLETED
+            - CANCELLED
+        description:
+          type: string
+        startDateTime:
+          type: string
+          format: date-time
+        endDateTime:
+          type: string
+          format: date-time
+        playSpaceId:
+          type: integer
+          format: int64
+        maxSlot:
+          type: integer
+          format: int32
+        availableSlot:
+          type: integer
+          format: int32
+        createdAt:
+          type: string
+          format: date-time
 
     EnrollRequest:
       type: object
