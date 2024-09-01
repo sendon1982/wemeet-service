@@ -1,9 +1,11 @@
 package org.wemeet.service.gen.jpa;
-// Generated 31 Aug 2024, 9:53:40 pm by Hibernate Tools 6.5.2.Final
+// Generated 1 Sept 2024, 2:00:09 pm by Hibernate Tools 6.5.2.Final
 
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import static jakarta.persistence.GenerationType.IDENTITY;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
@@ -18,7 +20,7 @@ import java.time.LocalDateTime;
 public class SupplierEntity  implements java.io.Serializable {
 
 
-     private long id;
+     private Long id;
      private String wechatId;
      private String wechatName;
      private String wechatProfileImageUrl;
@@ -33,12 +35,10 @@ public class SupplierEntity  implements java.io.Serializable {
     }
 
 	
-    public SupplierEntity(long id, String name) {
-        this.id = id;
+    public SupplierEntity(String name) {
         this.name = name;
     }
-    public SupplierEntity(long id, String wechatId, String wechatName, String wechatProfileImageUrl, String email, String mobile, LocalDateTime createdAt, String createdBy, String address, String name) {
-       this.id = id;
+    public SupplierEntity(String wechatId, String wechatName, String wechatProfileImageUrl, String email, String mobile, LocalDateTime createdAt, String createdBy, String address, String name) {
        this.wechatId = wechatId;
        this.wechatName = wechatName;
        this.wechatProfileImageUrl = wechatProfileImageUrl;
@@ -50,15 +50,15 @@ public class SupplierEntity  implements java.io.Serializable {
        this.name = name;
     }
    
-     @Id 
+     @Id @GeneratedValue(strategy=IDENTITY)
 
     
     @Column(name="id", unique=true, nullable=false)
-    public long getId() {
+    public Long getId() {
         return this.id;
     }
     
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

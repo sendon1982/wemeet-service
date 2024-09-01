@@ -371,6 +371,10 @@ components:
           type: string
         address:
           type: string
+        email:
+          type: string
+        mobile:
+          type: string
 
     CreatePlaySpaceRequest:
       type: object
