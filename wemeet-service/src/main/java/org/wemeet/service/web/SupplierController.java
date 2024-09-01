@@ -34,8 +34,9 @@ public class SupplierController implements SpaceSupplierApi {
     }
 
     @Override
-    public ResponseEntity<CreatePlaySpaceResponse> createNewPlaySpace(String supplierId, CreatePlaySpaceRequest request) {
+    public ResponseEntity<CreatePlaySpaceResponse> createNewPlaySpace(Long supplierId, CreatePlaySpaceRequest request) {
         supplierService.createNewPlaySpace(supplierId, request);
+        log.info("=====Created new play space=====");
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -52,6 +53,7 @@ public class SupplierController implements SpaceSupplierApi {
     @Override
     public ResponseEntity<List<SupplierResponse>> getSuppliersByQuery(String query, String sort, Integer pageSize, Integer pageNo) {
         List<SupplierResponse> supplierResponseList = supplierService.getSuppliersByQuery(query, sort, pageSize, pageNo);
+        log.info("=====Gotten supplier by query=====");
         return ResponseEntity.ok(supplierResponseList);
     }
 }

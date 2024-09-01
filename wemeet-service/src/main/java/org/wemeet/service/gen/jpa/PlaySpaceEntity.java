@@ -1,5 +1,5 @@
 package org.wemeet.service.gen.jpa;
-// Generated 1 Sept 2024, 2:00:09 pm by Hibernate Tools 6.5.2.Final
+// Generated 1 Sept 2024, 3:05:25 pm by Hibernate Tools 6.5.2.Final
 
 
 import jakarta.persistence.Column;
@@ -23,20 +23,26 @@ public class PlaySpaceEntity  implements java.io.Serializable {
      private String description;
      private String wechatProfileImageUrl;
      private String address;
-     private Integer capacity;
+     private int capacity;
      private LocalDateTime beginDateTime;
      private LocalDateTime endDateTime;
      private LocalDateTime createdAt;
-     private String createdBy;
+     private long createdBy;
 
     public PlaySpaceEntity() {
     }
 
 	
-    public PlaySpaceEntity(long id) {
+    public PlaySpaceEntity(long id, String name, String address, int capacity, LocalDateTime beginDateTime, LocalDateTime endDateTime, long createdBy) {
         this.id = id;
+        this.name = name;
+        this.address = address;
+        this.capacity = capacity;
+        this.beginDateTime = beginDateTime;
+        this.endDateTime = endDateTime;
+        this.createdBy = createdBy;
     }
-    public PlaySpaceEntity(long id, String name, String description, String wechatProfileImageUrl, String address, Integer capacity, LocalDateTime beginDateTime, LocalDateTime endDateTime, LocalDateTime createdAt, String createdBy) {
+    public PlaySpaceEntity(long id, String name, String description, String wechatProfileImageUrl, String address, int capacity, LocalDateTime beginDateTime, LocalDateTime endDateTime, LocalDateTime createdAt, long createdBy) {
        this.id = id;
        this.name = name;
        this.description = description;
@@ -62,7 +68,7 @@ public class PlaySpaceEntity  implements java.io.Serializable {
     }
 
     
-    @Column(name="name", length=100)
+    @Column(name="name", nullable=false, length=100)
     public String getName() {
         return this.name;
     }
@@ -92,7 +98,7 @@ public class PlaySpaceEntity  implements java.io.Serializable {
     }
 
     
-    @Column(name="address", length=500)
+    @Column(name="address", nullable=false, length=500)
     public String getAddress() {
         return this.address;
     }
@@ -102,17 +108,17 @@ public class PlaySpaceEntity  implements java.io.Serializable {
     }
 
     
-    @Column(name="capacity")
-    public Integer getCapacity() {
+    @Column(name="capacity", nullable=false)
+    public int getCapacity() {
         return this.capacity;
     }
     
-    public void setCapacity(Integer capacity) {
+    public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
 
     
-    @Column(name="begin_date_time", length=19)
+    @Column(name="begin_date_time", nullable=false, length=19)
     public LocalDateTime getBeginDateTime() {
         return this.beginDateTime;
     }
@@ -122,7 +128,7 @@ public class PlaySpaceEntity  implements java.io.Serializable {
     }
 
     
-    @Column(name="end_date_time", length=19)
+    @Column(name="end_date_time", nullable=false, length=19)
     public LocalDateTime getEndDateTime() {
         return this.endDateTime;
     }
@@ -142,12 +148,12 @@ public class PlaySpaceEntity  implements java.io.Serializable {
     }
 
     
-    @Column(name="created_by", length=100)
-    public String getCreatedBy() {
+    @Column(name="created_by", nullable=false)
+    public long getCreatedBy() {
         return this.createdBy;
     }
     
-    public void setCreatedBy(String createdBy) {
+    public void setCreatedBy(long createdBy) {
         this.createdBy = createdBy;
     }
 

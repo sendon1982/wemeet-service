@@ -1,11 +1,9 @@
 package org.wemeet.service.gen.jpa;
-// Generated 1 Sept 2024, 2:00:09 pm by Hibernate Tools 6.5.2.Final
+// Generated 1 Sept 2024, 3:05:25 pm by Hibernate Tools 6.5.2.Final
 
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import static jakarta.persistence.GenerationType.IDENTITY;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
@@ -20,45 +18,47 @@ import java.time.LocalDateTime;
 public class SupplierEntity  implements java.io.Serializable {
 
 
-     private Long id;
+     private long id;
      private String wechatId;
      private String wechatName;
      private String wechatProfileImageUrl;
      private String email;
      private String mobile;
-     private LocalDateTime createdAt;
-     private String createdBy;
      private String address;
      private String name;
+     private LocalDateTime createdAt;
+     private String createdBy;
 
     public SupplierEntity() {
     }
 
 	
-    public SupplierEntity(String name) {
+    public SupplierEntity(long id, String name) {
+        this.id = id;
         this.name = name;
     }
-    public SupplierEntity(String wechatId, String wechatName, String wechatProfileImageUrl, String email, String mobile, LocalDateTime createdAt, String createdBy, String address, String name) {
+    public SupplierEntity(long id, String wechatId, String wechatName, String wechatProfileImageUrl, String email, String mobile, String address, String name, LocalDateTime createdAt, String createdBy) {
+       this.id = id;
        this.wechatId = wechatId;
        this.wechatName = wechatName;
        this.wechatProfileImageUrl = wechatProfileImageUrl;
        this.email = email;
        this.mobile = mobile;
-       this.createdAt = createdAt;
-       this.createdBy = createdBy;
        this.address = address;
        this.name = name;
+       this.createdAt = createdAt;
+       this.createdBy = createdBy;
     }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
+     @Id 
 
     
     @Column(name="id", unique=true, nullable=false)
-    public Long getId() {
+    public long getId() {
         return this.id;
     }
     
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -113,26 +113,6 @@ public class SupplierEntity  implements java.io.Serializable {
     }
 
     
-    @Column(name="created_at", length=19)
-    public LocalDateTime getCreatedAt() {
-        return this.createdAt;
-    }
-    
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    
-    @Column(name="created_by", length=100)
-    public String getCreatedBy() {
-        return this.createdBy;
-    }
-    
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    
     @Column(name="address", length=500)
     public String getAddress() {
         return this.address;
@@ -150,6 +130,26 @@ public class SupplierEntity  implements java.io.Serializable {
     
     public void setName(String name) {
         this.name = name;
+    }
+
+    
+    @Column(name="created_at", length=19)
+    public LocalDateTime getCreatedAt() {
+        return this.createdAt;
+    }
+    
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    
+    @Column(name="created_by", length=100)
+    public String getCreatedBy() {
+        return this.createdBy;
+    }
+    
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
     }
 
 

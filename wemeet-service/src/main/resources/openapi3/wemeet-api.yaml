@@ -90,8 +90,8 @@ paths:
             type: integer
             default: 0
       responses:
-        '200':
-          description: Successful response
+        '201':
+          description: Successfully Created
           content:
             application/json:
               schema:
@@ -116,12 +116,13 @@ paths:
       tags:
         - Space Supplier
       operationId: createNewPlaySpace
-      summary: Create a new play space to orgnizers to schedule and plan activities
+      summary: Create a new play space to organizers to schedule and plan activities
       parameters:
         - in: path
           name: supplierId
           schema:
-            type: string
+            type: integer
+            format: int64
           required: true
       requestBody:
         content:
@@ -130,8 +131,8 @@ paths:
               $ref: '#/components/schemas/CreatePlaySpaceRequest'
         required: true
       responses:
-        '200':
-          description: Successful response
+        '201':
+          description: Successfully created
           content:
             application/json:
               schema:

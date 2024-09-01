@@ -3,10 +3,13 @@ package org.wemeet.service.svc;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.wemeet.service.gen.jpa.PlaySpaceEntity;
 import org.wemeet.service.gen.jpa.SupplierEntity;
 import org.wemeet.service.gen.model.CreatePlaySpaceRequest;
+import org.wemeet.service.gen.model.CreatePlaySpaceResponse;
 import org.wemeet.service.gen.model.CreateSupplierRequest;
 import org.wemeet.service.gen.model.SupplierResponse;
+import org.wemeet.service.repository.jpa.PlaySpaceRepository;
 import org.wemeet.service.repository.jpa.SupplierInfoRepository;
 
 import java.util.ArrayList;
@@ -18,6 +21,7 @@ import java.util.List;
 public class SupplierServiceImpl implements SupplierService {
 
     private final SupplierInfoRepository supplierInfoRepository;
+    private final PlaySpaceRepository playSpaceRepository;
 
     @Override
     public SupplierResponse createSupplier(CreateSupplierRequest request) {
@@ -36,8 +40,17 @@ public class SupplierServiceImpl implements SupplierService {
     }
 
     @Override
-    public void createNewPlaySpace(String supplierId, CreatePlaySpaceRequest request) {
+    public void createNewPlaySpace(Long supplierId, CreatePlaySpaceRequest request) {
+        PlaySpaceEntity playSpaceEntity = new PlaySpaceEntity();
+        playSpaceEntity.setName(request.getName());
+        playSpaceEntity.setDescription(request.getDescription());
+        playSpaceEntity.setCapacity(request.getCapacity());
+        playSpaceEntity.setAddress(request.getAddress());
+        playSpaceEntity.setBeginDateTime(request.getBeginDateTime());
+        playSpaceEntity.setEndDateTime(request.getEndDateTime());
+        playSpaceEntity.setCreatedBy(supplierId);
 
+        playSpaceRepository.save(playSpaceEntity);
     }
 
     @Override
@@ -56,7 +69,7 @@ public class SupplierServiceImpl implements SupplierService {
         response.setName(supplierEntity.getName());
         response.setMobile(supplierEntity.getMobile());
         response.setEmail(supplierEntity.getEmail());
-        response.setId(supplierEntity.getId().toString());
+        response.setId(Long.toString(supplierEntity.getId()));
         return response;
     }
 }

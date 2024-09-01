@@ -17,6 +17,10 @@
 
             <column name="email" type="varchar(100)"/>
             <column name="mobile" type="varchar(100)"/>
+            <column name="address" type="varchar(500)"/>
+            <column name="name" type="varchar(100)">
+                <constraints nullable="false" />
+            </column>
 
             <column name="created_at" type="datetime" />
             <column name="created_by" type="varchar(100)" />
@@ -161,31 +165,32 @@
                 <constraints primaryKey="true" />
             </column>
 
-            <column name="name" type="varchar(100)"/>
+            <column name="name" type="varchar(100)">
+                <constraints nullable="false" />
+            </column>
             <column name="description" type="varchar(500)"/>
             <column name="wechat_profile_image_url" type="varchar(500)"/>
 
-            <column name="address" type="varchar(500)"/>
-            <column name="capacity" type="int"/>
-
-            <column name="begin_date_time" type="datetime"/>
-            <column name="end_date_time" type="datetime"/>
-
-            <column name="created_at" type="datetime" />
-            <column name="created_by" type="varchar(100)" />
-        </createTable>
-
-    </changeSet>
-
-    <changeSet author="Siqi Yi" id="addColumn-supplier">
-        <addColumn tableName="supplier_entity">
-            <column name="address"
-                    type="varchar(500)"/>
-            <column name="name"
-                    type="varchar(100)">
+            <column name="address" type="varchar(500)">
                 <constraints nullable="false" />
             </column>
-        </addColumn>
+            <column name="capacity" type="int">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="begin_date_time" type="datetime">
+                <constraints nullable="false" />
+            </column>
+            <column name="end_date_time" type="datetime">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="created_at" type="datetime" />
+            <column name="created_by" type="bigint">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
     </changeSet>
 
 </databaseChangeLog>
