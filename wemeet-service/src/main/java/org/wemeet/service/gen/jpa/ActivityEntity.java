@@ -1,5 +1,5 @@
 package org.wemeet.service.gen.jpa;
-// Generated Aug 31, 2024, 7:45:08 PM by Hibernate Tools 6.5.2.Final
+// Generated 1 Sept 2024, 3:38:16 pm by Hibernate Tools 6.5.2.Final
 
 
 import jakarta.persistence.Column;
@@ -24,6 +24,7 @@ public class ActivityEntity  implements java.io.Serializable {
      private String activityName;
      private String activityStatus;
      private String description;
+     private LocalDateTime startDateTime;
      private LocalDateTime endDateTime;
      private Long playSpaceId;
      private Integer maxSlot;
@@ -38,13 +39,14 @@ public class ActivityEntity  implements java.io.Serializable {
     public ActivityEntity(long activityId) {
         this.activityId = activityId;
     }
-    public ActivityEntity(long activityId, Long hostUserId, Long postedUserId, String activityName, String activityStatus, String description, LocalDateTime endDateTime, Long playSpaceId, Integer maxSlot, Integer availableSlot, LocalDateTime createdAt, String createdBy) {
+    public ActivityEntity(long activityId, Long hostUserId, Long postedUserId, String activityName, String activityStatus, String description, LocalDateTime startDateTime, LocalDateTime endDateTime, Long playSpaceId, Integer maxSlot, Integer availableSlot, LocalDateTime createdAt, String createdBy) {
        this.activityId = activityId;
        this.hostUserId = hostUserId;
        this.postedUserId = postedUserId;
        this.activityName = activityName;
        this.activityStatus = activityStatus;
        this.description = description;
+       this.startDateTime = startDateTime;
        this.endDateTime = endDateTime;
        this.playSpaceId = playSpaceId;
        this.maxSlot = maxSlot;
@@ -113,6 +115,16 @@ public class ActivityEntity  implements java.io.Serializable {
     
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    
+    @Column(name="start_date_time", length=19)
+    public LocalDateTime getStartDateTime() {
+        return this.startDateTime;
+    }
+    
+    public void setStartDateTime(LocalDateTime startDateTime) {
+        this.startDateTime = startDateTime;
     }
 
     

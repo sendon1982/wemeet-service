@@ -1,9 +1,11 @@
 package org.wemeet.service.gen.jpa;
-// Generated Aug 31, 2024, 7:45:08 PM by Hibernate Tools 6.5.2.Final
+// Generated 1 Sept 2024, 3:38:16 pm by Hibernate Tools 6.5.2.Final
 
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import static jakarta.persistence.GenerationType.IDENTITY;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
@@ -18,26 +20,30 @@ import java.time.LocalDateTime;
 public class PlaySpaceEntity  implements java.io.Serializable {
 
 
-     private long id;
+     private Long id;
      private String name;
      private String description;
      private String wechatProfileImageUrl;
      private String address;
-     private Integer capacity;
+     private int capacity;
      private LocalDateTime beginDateTime;
      private LocalDateTime endDateTime;
      private LocalDateTime createdAt;
-     private String createdBy;
+     private long createdBy;
 
     public PlaySpaceEntity() {
     }
 
 	
-    public PlaySpaceEntity(long id) {
-        this.id = id;
+    public PlaySpaceEntity(String name, String address, int capacity, LocalDateTime beginDateTime, LocalDateTime endDateTime, long createdBy) {
+        this.name = name;
+        this.address = address;
+        this.capacity = capacity;
+        this.beginDateTime = beginDateTime;
+        this.endDateTime = endDateTime;
+        this.createdBy = createdBy;
     }
-    public PlaySpaceEntity(long id, String name, String description, String wechatProfileImageUrl, String address, Integer capacity, LocalDateTime beginDateTime, LocalDateTime endDateTime, LocalDateTime createdAt, String createdBy) {
-       this.id = id;
+    public PlaySpaceEntity(String name, String description, String wechatProfileImageUrl, String address, int capacity, LocalDateTime beginDateTime, LocalDateTime endDateTime, LocalDateTime createdAt, long createdBy) {
        this.name = name;
        this.description = description;
        this.wechatProfileImageUrl = wechatProfileImageUrl;
@@ -49,20 +55,20 @@ public class PlaySpaceEntity  implements java.io.Serializable {
        this.createdBy = createdBy;
     }
    
-     @Id 
+     @Id @GeneratedValue(strategy=IDENTITY)
 
     
     @Column(name="id", unique=true, nullable=false)
-    public long getId() {
+    public Long getId() {
         return this.id;
     }
     
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
     
-    @Column(name="name", length=100)
+    @Column(name="name", nullable=false, length=100)
     public String getName() {
         return this.name;
     }
@@ -92,7 +98,7 @@ public class PlaySpaceEntity  implements java.io.Serializable {
     }
 
     
-    @Column(name="address", length=500)
+    @Column(name="address", nullable=false, length=500)
     public String getAddress() {
         return this.address;
     }
@@ -102,17 +108,17 @@ public class PlaySpaceEntity  implements java.io.Serializable {
     }
 
     
-    @Column(name="capacity")
-    public Integer getCapacity() {
+    @Column(name="capacity", nullable=false)
+    public int getCapacity() {
         return this.capacity;
     }
     
-    public void setCapacity(Integer capacity) {
+    public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
 
     
-    @Column(name="begin_date_time", length=19)
+    @Column(name="begin_date_time", nullable=false, length=19)
     public LocalDateTime getBeginDateTime() {
         return this.beginDateTime;
     }
@@ -122,7 +128,7 @@ public class PlaySpaceEntity  implements java.io.Serializable {
     }
 
     
-    @Column(name="end_date_time", length=19)
+    @Column(name="end_date_time", nullable=false, length=19)
     public LocalDateTime getEndDateTime() {
         return this.endDateTime;
     }
@@ -142,12 +148,12 @@ public class PlaySpaceEntity  implements java.io.Serializable {
     }
 
     
-    @Column(name="created_by", length=100)
-    public String getCreatedBy() {
+    @Column(name="created_by", nullable=false)
+    public long getCreatedBy() {
         return this.createdBy;
     }
     
-    public void setCreatedBy(String createdBy) {
+    public void setCreatedBy(long createdBy) {
         this.createdBy = createdBy;
     }
 
