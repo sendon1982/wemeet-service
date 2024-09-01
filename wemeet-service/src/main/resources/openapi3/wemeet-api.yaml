@@ -159,7 +159,8 @@ paths:
         - in: path
           name: supplierId
           schema:
-            type: string
+            type: integer
+            format: int64
           required: true
 
       responses:
@@ -168,7 +169,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CreatePlaySpaceResponse'
+                type: array
+                items:
+                  $ref: '#/components/schemas/CreatePlaySpaceResponse'
         '403':
           description: API key is missing or invalid
           content:
@@ -195,7 +198,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CreatePlaySpaceResponse'
+                type: array
+                items:
+                  $ref: '#/components/schemas/CreatePlaySpaceResponse'
         '403':
           description: API key is missing or invalid
           content:
@@ -431,6 +436,9 @@ components:
           description: this can be calculated at run time
         note:
           type: string
+        createdBy:
+          type: integer
+          format: int64
 
     CreatActivityRequest:
       type: object

@@ -13,4 +13,7 @@ public interface SupplierService {
     SupplierResponse createSupplier(CreateSupplierRequest request);
 
     void createNewPlaySpace(Long supplierId, CreatePlaySpaceRequest request);
+
+    List<CreatePlaySpaceResponse> getAllPlaySpaceList();
+    List<CreatePlaySpaceResponse> getPlaySpaceListBySupplierId(Long supplierId);
 }

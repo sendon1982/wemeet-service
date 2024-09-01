@@ -41,13 +41,15 @@ public class SupplierController implements SpaceSupplierApi {
     }
 
     @Override
-    public ResponseEntity<CreatePlaySpaceResponse> getAllPlaySpaceList() {
-        return SpaceSupplierApi.super.getAllPlaySpaceList();
+    public ResponseEntity<List<CreatePlaySpaceResponse>> getAllPlaySpaceList() {
+        var playSpaceList = supplierService.getAllPlaySpaceList();
+        return new ResponseEntity<>(playSpaceList, HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<CreatePlaySpaceResponse> getPlaySpaceListBySupplierId(String supplierId) {
-        return SpaceSupplierApi.super.getPlaySpaceListBySupplierId(supplierId);
+    public ResponseEntity<List<CreatePlaySpaceResponse>> getPlaySpaceListBySupplierId(Long supplierId) {
+        var playSpaceList = supplierService.getPlaySpaceListBySupplierId(supplierId);
+        return new ResponseEntity<>(playSpaceList, HttpStatus.OK);
     }
 
     @Override

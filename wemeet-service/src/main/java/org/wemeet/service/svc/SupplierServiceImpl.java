@@ -54,6 +54,26 @@ public class SupplierServiceImpl implements SupplierService {
     }
 
     @Override
+    public List<CreatePlaySpaceResponse> getAllPlaySpaceList() {
+        var playSpaceEntities = playSpaceRepository.findAll();
+        List<CreatePlaySpaceResponse> responses = new ArrayList<>();
+        for(var entity : playSpaceEntities){
+            responses.add(playSpaceEntityToResponse(entity));
+        }
+        return responses;
+    }
+
+    @Override
+    public List<CreatePlaySpaceResponse> getPlaySpaceListBySupplierId(Long supplierId) {
+        var playSpaceEntities = playSpaceRepository.findByCreatedBy(supplierId);
+        List<CreatePlaySpaceResponse> responses = new ArrayList<>();
+        for(var entity : playSpaceEntities){
+            responses.add(playSpaceEntityToResponse(entity));
+        }
+        return responses;
+    }
+
+    @Override
     public List<SupplierResponse> getSuppliersByQuery(String query, String sort, Integer pageSize, Integer pageNo) {
         var res = supplierInfoRepository.findByAddressContainsOrEmailContainsOrNameContainsOrMobileContains(query, query, query, query);
         List<SupplierResponse> supplierResponses = new ArrayList<>();
@@ -70,6 +90,19 @@ public class SupplierServiceImpl implements SupplierService {
         response.setMobile(supplierEntity.getMobile());
         response.setEmail(supplierEntity.getEmail());
         response.setId(Long.toString(supplierEntity.getId()));
+        return response;
+    }
+
+    private CreatePlaySpaceResponse playSpaceEntityToResponse(PlaySpaceEntity playSpaceEntity) {
+        CreatePlaySpaceResponse response = new CreatePlaySpaceResponse();
+        response.setAddress(playSpaceEntity.getAddress());
+        response.setName(playSpaceEntity.getName());
+        response.setDescription(playSpaceEntity.getDescription());
+        response.setCapacity(playSpaceEntity.getCapacity());
+        response.setBeginDateTime(playSpaceEntity.getBeginDateTime());
+        response.setEndDateTime(playSpaceEntity.getEndDateTime());
+        response.setCreatedBy(playSpaceEntity.getCreatedBy());
+
         return response;
     }
 }
